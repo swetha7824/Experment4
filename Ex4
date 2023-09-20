@@ -1,0 +1,198 @@
+/tax calculation
+import java.util.*;
+abstract class person
+{
+   String name;
+    String gender;
+    int aadhar;
+    double income;
+    double tax;
+ abstract void getinformation ();
+   abstract void CalculateTax ();
+   void show()
+   {
+     Scanner obj = new Scanner (System.in);
+      System.out.println("name:");
+      name =obj.next();
+      System.out.println("gender:");
+      gender=obj.next();
+      System.out.println("aadhar number:");
+      aadhar= obj.nextInt();
+   }
+ }
+class employee extends person
+{
+  public void getinformation ()
+  {
+    System.out.println ("employee details:");
+  }
+ public void CalculateTax ()
+  {
+    Scanner obj=new Scanner(System.in);
+    System.out.println("enter your income:");
+    income=obj.nextDouble();
+    if (gender == "male")
+      {
+if (income >= 190000)
+ {
+   System.out.println ("nil");
+ }
+else if (income >= 200000)
+ {
+   tax = income * (10 % 100);
+   System.out.println ("your tax is:" + tax);
+ }
+else if (income >= 500000)
+ {
+   tax = income * (20 % 100);
+   System.out.println ("your tax is:" + tax);
+ }
+else if (income < 500000)
+ {
+   tax = income * (25 % 100);
+   System.out.println ("your tax is:" + tax);
+ }
+else
+ {
+   System.out.println ("you are not this category");
+ }
+      }
+    else if (gender == "female")
+      {
+if (income >= 190000)
+ {
+   System.out.println ("tax is nil");
+ }
+else if (income >= 200000)
+ {
+   System.out.println ("tax is nil");
+ }
+else if (income >= 500000)
+ {
+   tax = income * (10 % 100);
+   System.out.println ("your tax is:" + tax);
+ }
+else if (income < 500000)
+ {
+   tax = income * (20 % 100);
+   System.out.println ("your tax is:" + tax);
+ }
+else
+ {
+   System.out.println ("you are not under this category");
+ }
+      }
+      else
+      {
+System.out.println ("not eligible");
+      }
+  }
+}
+  public class Main
+  {
+    public static void main (String[]args)
+    {
+      person e= new employee();
+      e.getinformation();
+      e.show();
+      e.CalculateTax();
+    }
+}
+// stack implementation
+import java.util.*;
+interface Stack
+{
+    void push(int item);
+    int pop();
+    void display();
+}
+class Mystack implements Stack
+{
+    private int maxSize;
+    private int top;
+    private int[] stackArray;
+    public Mystack(int size)
+    {
+        maxSize=size;
+        stackArray=new int[maxSize];
+        top=-1;
+    }
+    public void push(int item)
+    {
+        if(top==maxSize-1)
+        {
+            System.out.println("stack is full");
+        }
+        else
+        {
+          stackArray[++top] =item;
+          System.out.println(item+ "push to the stack");
+        }
+    }
+    public int pop()
+    {
+        if(top==-1)
+        {
+            System.out.println("stack is empty");
+            return -1;
+        }
+        else
+        {
+            int item=stackArray[top--];
+            System.out.println(item+ "popped from the stack");
+            return item;
+        }
+    }
+    public void display()
+     {
+        if(top==-1)
+         {
+            System.out.println("stack is empty");
+         }
+        else
+        {
+            System.out.println("stack elements:");
+            for(int i=top;i>=0;i--)
+            {
+                System.out.println(stackArray[i]+" ");
+            }
+            System.out.println();
+        }
+     }
+}
+public class Main{
+    public static void main(String [] args)
+    {
+        Scanner obj= new Scanner(System.in);
+        System.out.println(" enter the sie of stack:");
+        int size=obj.nextInt();
+        Mystack s= new Mystack(size);
+        while(true)
+        {
+            System.out.println("choose an operation");
+            System.out.println("1. push");
+            System.out.println("2. pop");
+            System.out.println("3. display");
+            System.out.println("4.exit");
+            int choice =obj.nextInt();
+            switch(choice)
+            {
+                case 1:
+                    System.out.println("enter the element to push:");
+                    int item =obj.nextInt();
+                    s.push(item);
+                    break;
+                case 2:
+                    s.pop();
+                    break;
+                case 3:
+                    s.display();
+                case 4:
+                    System.exit(0);
+                default:
+                System.out.println(" invalid  choice");
+                   
+            }      
+         }
+    }
+}
